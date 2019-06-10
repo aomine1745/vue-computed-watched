@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+  
+  <div id="app">
+    <div class="container">
+      <h1 class="text-center pt-3">{{ title }}</h1>
+      <h2>Vmodel</h2>
+      <div class="form-group">
+        <label for="firstName">First name</label>
+        <input type="text" id="firstName" class="form-control" v-model="firstName">
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last name</label>
+        <input type="text" id="lastName" class="form-control" v-model="lastName">
+      </div>
+      <p class="lead">FullName: {{ firstName + ' ' + lastName }}</p>
+      <h2>{{ title1 | upper }}</h2>
+      <div class="form-group">
+        <label for="firstName1">First name</label>
+        <input type="text" id="firstName1" class="form-control" v-model="firstName1">
+      </div>
+      <div class="form-group">
+        <label for="lastName1">Last name</label>
+        <input type="text" id="lastName1" class="form-control" v-model="lastName1">
+      </div>
+      <p class="lead">FullName: {{ fullName1 }}</p>
+      <h2>{{ title2 | upper }}</h2>
+      <div class="form-group">
+        <label for="firstName2">First name</label>
+        <input type="text" id="firstName2" class="form-control" v-model="firstName2">
+      </div>
+      <div class="form-group">
+        <label for="lastName2">Last name</label>
+        <input type="text" id="lastName2" class="form-control" v-model="lastName2">
+      </div>
+      <p class="lead">FullName: {{ fullName2 }}</p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        title: 'Vue.js',
+        title1: 'Watches',
+        title2: 'Computeds',
+        firstName: '',
+        lastName: '',
+        firstName1: '',
+        lastName1: '',
+        fullName1: '',
+        firstName2: '',
+        lastName2: ''
+      },
+      watch: {
+        firstName1(str){
+          this.fullName1 = str + ' ' + this.lastName1;
+        },
+        lastName1(str){
+          this.fullName1 = this.firstName1 + ' ' + str;
+        }
+      },
+      computed: {
+        fullName2(){
+          return this.firstName2 + ' ' + this.lastName2;
+        }
+      },
+      filters: {
+        upper(str){
+          return str.toUpperCase();
+        }
+      }
+    })
+  </script>
+</body>
+</html>
